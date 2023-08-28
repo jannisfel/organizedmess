@@ -1,1 +1,2 @@
-# organizedmess
+# Organized mess
+A inventory app
