@@ -1,2 +1,2 @@
 # Organized mess
-A inventory app
+An inventory app.
