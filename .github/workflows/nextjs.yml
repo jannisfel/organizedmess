@@ -20,7 +20,7 @@ permissions:
 jobs:
   # Build job
   build-main:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     strategy:
       matrix:
