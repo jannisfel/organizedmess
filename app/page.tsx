@@ -22,17 +22,16 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div>
         <div className='mb-8'>
-          <h1 className='text-xl md:text-4xl'>Organizedmess</h1>
+          <h1 className='text-xl md:text-4xl'>Lastcloud</h1>
+          <span>Never again.</span>
         </div>
 
-
+        <div className='grid justify-center items-center grid-cols-1 gap-4'>
+          <Action name="log in" href='/login'></Action>
+          <h2 className='text-xl md:text-2xl'>OR</h2>
+          <Action name="sign up" href='/register'></Action>
+        </div>
       </div>
     </main>
   )
 }
-
-//        <div className='grid justify-center items-center grid-cols-1 gap-4'>
-//          <Action name="log in" href='/login'></Action>
-//          <h2 className='text-xl md:text-2xl'>OR</h2>
-//          <Action name="sign up" href='/register'></Action>
-//        </div>
