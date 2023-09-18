@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
     "@nextui-org/button": "2.0.9",
     "@nextui-org/code": "2.0.7",
     "@nextui-org/input": "2.0.10",
@@ -29,6 +30,7 @@
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
     "framer-motion": "^10.15.1",
+    "headlessui": "^0.0.0",
     "intl-messageformat": "^10.1.0",
     "next": "13.4.13",
     "next-themes": "^0.2.1",
