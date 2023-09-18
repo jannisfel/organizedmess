@@ -5,22 +5,22 @@ export const siteConfig = {
 	description: "Organizedmess",
 	navItems: [
 		{
-			label: "Dashboard",
-			href: "/dashboard",
+			label: "Home",
+			href: "/",
 		},
 		{
-			label: "Logout",
-			href: "/logout",
+			label: "Dashboard",
+			href: "/login",
 		},
 	],
 	navMenuItems: [
 		{
-			label: "Dashboard",
-			href: "/dashboard",
+			label: "Home",
+			href: "/",
 		},
 		{
-			label: "Logout",
-			href: "/logout",
+			label: "Dashboard",
+			href: "/login",
 		},
 	],
 	links: {
