@@ -6,32 +6,49 @@ import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
-import getUser from "@/lib/serverSide";
-import { redirect } from "next/navigation";
-import Action from "./action";
 
-export default async function Home() {
+export default function Home() {
+	return (
+		<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+			<div className="inline-block max-w-lg text-center justify-center">
+				<h1 className={title()}>Make&nbsp;</h1>
+				<h1 className={title({ color: "violet" })}>beautiful&nbsp;</h1>
+				<br />
+				<h1 className={title()}>
+					websites regardless of your design experience.
+				</h1>
+				<h2 className={subtitle({ class: "mt-4" })}>
+					Beautiful, fast and modern React UI library.
+				</h2>
+			</div>
 
-  // Redirect to the dashboard page in case the user is already logged in.
-  //const user = await getUser(cookies());
-  //if (user) {
-  //  redirect("/d");
-  //}
+			<div className="flex gap-3">
+				<Link
+					isExternal
+					as={NextLink}
+					href={siteConfig.links.docs}
+					className={buttonStyles({ color: "primary", radius: "full", variant: "shadow" })}
+				>
+					Documentation
+				</Link>
+				<Link
+					isExternal
+					as={NextLink}
+					className={buttonStyles({ variant: "bordered", radius: "full" })}
+					href={siteConfig.links.github}
+				>
+					<GithubIcon size={20} />
+					GitHub
+				</Link>
+			</div>
 
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>
-        <div className='mb-8'>
-          <h1 className='text-xl md:text-4xl'>Lastcloud</h1>
-          <span>Never again.</span>
-        </div>
-
-        <div className='grid justify-center items-center grid-cols-1 gap-4'>
-          <Action name="log in" href='/login'></Action>
-          <h2 className='text-xl md:text-2xl'>OR</h2>
-          <Action name="sign up" href='/register'></Action>
-        </div>
-      </div>
-    </main>
-  )
+			<div className="mt-8">
+				<Snippet hideSymbol hideCopyButton variant="flat">
+					<span>
+						Get started by editing <Code color="primary">app/page.tsx</Code>
+					</span>
+				</Snippet>
+			</div>
+		</section>
+	);
 }
