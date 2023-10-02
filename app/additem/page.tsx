@@ -12,7 +12,7 @@ export default function Home() {
           id="item-name"
           placeholder="Type item name here..."
           width="300px"
-          size="large"
+          size="lg"
         />
         <div style={{ margin: "1rem 0" }}>
           <Button auto color="primary">
