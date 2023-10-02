@@ -26,7 +26,7 @@ export default function Login() {
         emailRedirectTo: `${location.origin}/auth/callback`,
       },
     });
-    if (!emailConfirmationRequired) {
+    if (emailConfirmationRequired) {
       setView("check-email");
     } else {
       router.push("/dashboard");
