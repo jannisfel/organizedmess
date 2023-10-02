@@ -15,7 +15,7 @@ export default function Home() {
           size="lg"
         />
         <div style={{ margin: "1rem 0" }}>
-          <Button auto color="primary">
+          <Button color="primary">
             Add Item
           </Button>
         </div>
