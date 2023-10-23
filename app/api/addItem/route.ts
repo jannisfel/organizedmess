@@ -17,21 +17,12 @@ export async function POST(request: Request) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) {
-    return NextResponse.redirect("/login");
-  }
+ if (!user) {
+   return NextResponse.redirect("/login");
+ }
 
   const body = await request.json();
 
-  //  created_at?: string
-  //  created_by?: string | null
-  // description?: string | null
-  // expires_at?: string | null
-  //  id?: string
-  // item_type?: string | null
-  // location: string
-  // name: string
-  //  updated_at?: string
 
   const { error } = await supabase.from("items").insert([
     {
