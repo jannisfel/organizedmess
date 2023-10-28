@@ -1,5 +1,5 @@
-import { ProtectRoute } from "@/lib/protectedRoute";
 import Link from "next/link";
+import { ProtectRoute } from "@/lib/protectedRoute";
 
 export default function Home() {
   return (
@@ -24,7 +24,7 @@ export default function Home() {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
+                  strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M1 5h12m0 0L9 1m4 4L9 9"
@@ -51,7 +51,7 @@ export default function Home() {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
+                  strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M1 5h12m0 0L9 1m4 4L9 9"
@@ -78,7 +78,7 @@ export default function Home() {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
+                  strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M1 5h12m0 0L9 1m4 4L9 9"
