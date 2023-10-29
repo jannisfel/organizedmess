@@ -1,7 +1,9 @@
+import LinkQRCode from "@/components/LinkQRCode";
 import { Database } from "@/lib/database.types";
 import { ProtectRoute } from "@/lib/protectedRoute";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import QRCode from "react-qr-code";
 
 async function ItemDetails({ id }: { id: string }) {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -35,6 +37,7 @@ export default function Item({ params: { id } }: { params: { id: string } }) {
       <section>
         <h1 className="text-2xl font-bold">Item</h1>
         <ItemDetails id={id} />
+        <LinkQRCode />
       </section>
     </ProtectRoute>
   );
