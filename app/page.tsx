@@ -52,24 +52,14 @@ export default function Home() {
       <section>
         <div className="inline-flex flex-wrap gap-4 w-full">
           <QuickLink
-            title="Add an Item"
-            description="Click here to add an item"
-            href="/items/create"
+            title="Manage Items"
+            description="Click here to list, add, edit and delete items"
+            href="/items"
           />
           <QuickLink
-            title="Add an Item"
-            description="Click here to add an item"
-            href="/items/create"
-          />
-          <QuickLink
-            title="Add an Item"
-            description="Click here to add an item"
-            href="/items/create"
-          />
-          <QuickLink
-            title="Add an Item"
-            description="Click here to add an item"
-            href="/items/create"
+            title="Manage Locations"
+            description="Click here to list, add, edit and delete locations"
+            href="/locations"
           />
         </div>
       </section>
