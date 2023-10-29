@@ -33,54 +33,51 @@ export default function AddItemForm({
   };
 
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="flex flex-col items-center gap-2 min-w-[50%]">
-        <h3 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          Add an Item
-        </h3>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            className="w-full"
-            {...register("name")}
-            isInvalid={errors.name !== undefined}
-            errorMessage={errors.name?.message}
-            label="Name"
-            size="lg"
-          />
-          <Input
-            className="w-full"
-            {...register("description")}
-            label="Description"
-            size="lg"
-          />
-          <Input
-            className="w-full"
-            {...register("expiration")}
-            label="Expiration"
-            size="lg"
-          />
-          <Input
-            className="w-full"
-            {...register("type")}
-            label="Type"
-            size="lg"
-          />
-          <Input
-            className="w-full"
-            {...register("location")}
-            label="Location"
-            size="lg"
-            isRequired
-          />
-          <Button className="w-full" color="primary" type="submit">
-            Add Item
-          </Button>
-        </form>
-      </div>
-      <div className="text-center">
-        <h3>Recently Added Items</h3>
-        {/* Display recently added items here */}
-      </div>
-    </section>
+    <div className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+      <h3 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        Add an Item
+      </h3>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col items-center justify-center gap-4 max-w-md w-full"
+      >
+        <Input
+          className="w-full"
+          {...register("name")}
+          isInvalid={errors.name !== undefined}
+          errorMessage={errors.name?.message}
+          label="Name"
+          size="lg"
+        />
+        <Input
+          className="w-full"
+          {...register("description")}
+          label="Description"
+          size="lg"
+        />
+        <Input
+          className="w-full"
+          {...register("expiration")}
+          label="Expiration"
+          size="lg"
+        />
+        <Input
+          className="w-full"
+          {...register("type")}
+          label="Type"
+          size="lg"
+        />
+        <Input
+          className="w-full"
+          {...register("location")}
+          label="Location"
+          size="lg"
+          isRequired
+        />
+        <Button className="w-full" color="primary" type="submit">
+          Add Item
+        </Button>
+      </form>
+    </div>
   );
 }

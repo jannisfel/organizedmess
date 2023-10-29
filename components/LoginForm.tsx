@@ -69,18 +69,14 @@ export default function LoginForm({
     router.refresh();
   };
 
-  return session ? (
+  return (
     <div className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="flex flex-col items-center justify-center gap-4 max-w-md w-full">
-        <Button fullWidth size="md" onClick={handleSignOut} color="primary">
-          Sign Out
-        </Button>
-      </div>
-    </div>
-  ) : (
-    <div className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="flex flex-col items-center justify-center gap-4 max-w-md w-full">
-        {view === "check-email" ? (
+        {session ? (
+          <Button fullWidth size="md" onClick={handleSignOut} color="primary">
+            Sign Out
+          </Button>
+        ) : view === "check-email" ? (
           <span>
             Check <span className="font-bold">{email}</span> to continue signing
             up
