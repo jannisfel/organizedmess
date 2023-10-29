@@ -37,7 +37,7 @@ export interface Database {
       items: {
         Row: {
           created_at: string
-          created_by: string | null
+          created_by: string
           description: string | null
           expires_at: string | null
           id: string
@@ -48,7 +48,7 @@ export interface Database {
         }
         Insert: {
           created_at?: string
-          created_by?: string | null
+          created_by: string
           description?: string | null
           expires_at?: string | null
           id?: string
@@ -59,7 +59,7 @@ export interface Database {
         }
         Update: {
           created_at?: string
-          created_by?: string | null
+          created_by?: string
           description?: string | null
           expires_at?: string | null
           id?: string
@@ -86,23 +86,33 @@ export interface Database {
       locations: {
         Row: {
           created_at: string
+          created_by: string
           description: string | null
           id: string
           name: string
         }
         Insert: {
           created_at?: string
+          created_by: string
           description?: string | null
           id?: string
           name: string
         }
         Update: {
           created_at?: string
+          created_by?: string
           description?: string | null
           id?: string
           name?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "locations_created_by_fkey"
+            columns: ["created_by"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       users: {
         Row: {
