@@ -29,5 +29,30 @@ export default function Home() {
     }
   };
 
-  return <AddItemForm createItem={createItem} />;
+  const listLocations = async () => {
+    "use server";
+
+    const supabase = createServerActionClient<Database>({ cookies });
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    const { data, error } = await supabase
+      .from("locations")
+      .select("*")
+      .eq("created_by", user.id);
+
+    if (error) {
+      throw error;
+    }
+
+    return data;
+  };
+
+  return <AddItemForm createItem={createItem} listLocations={listLocations} />;
 }

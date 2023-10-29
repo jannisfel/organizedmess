@@ -4,14 +4,32 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
+import { Select, SelectItem } from "@nextui-org/select";
 import { useRouter } from "next/navigation";
 import { FormState, formStateSchema } from "@/app/items/create/schema";
+import type { Database } from "@/lib/database.types";
+import { useEffect, useState } from "react";
 
 export default function AddItemForm({
   createItem,
+  listLocations,
 }: {
   createItem: (data: FormState) => Promise<void>;
+  listLocations: () => Promise<
+    Database["public"]["Tables"]["locations"]["Row"][]
+  >;
 }) {
+  const [locations, setLocations] = useState<
+    Awaited<ReturnType<typeof listLocations>>
+  >([]);
+
+  useEffect(() => {
+    async function loadLocations() {
+      setLocations(await listLocations());
+    }
+    loadLocations();
+  }, [listLocations]);
+
   const {
     register,
     handleSubmit,
@@ -57,25 +75,32 @@ export default function AddItemForm({
         />
         <Input
           className="w-full"
-          {...register("expiration")}
+          {...register("expires_at")}
           label="Expiration"
+          placeholder=" "
+          type="date"
           size="lg"
         />
         <Input
           className="w-full"
-          {...register("type")}
+          {...register("item_type")}
           label="Type"
           size="lg"
         />
-        <Input
+        <Select
           className="w-full"
           {...register("location")}
           label="Location"
           size="lg"
           isRequired
-        />
+          items={locations}
+        >
+          {(location) => (
+            <SelectItem key={location.id}>{location.name}</SelectItem>
+          )}
+        </Select>
         <Button className="w-full" color="primary" type="submit">
-          Add Item
+          Create Item
         </Button>
       </form>
     </div>
