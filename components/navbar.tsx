@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -28,8 +30,11 @@ import {
 } from "@/components/icons";
 
 import { Logo } from "@/components/icons";
+import { usePathname } from "next/navigation";
 
 export const Navbar = () => {
+  const pathname = usePathname();
+
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -39,15 +44,17 @@ export const Navbar = () => {
             <p className="font-bold text-inherit">OrganizedMess</p>
           </NextLink>
         </NavbarBrand>
-        <ul className="hidden lg:flex gap-4 justify-start ml-2">
+        <ul className="hidden sm:flex gap-4 justify-start ml-2">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
               <NextLink
                 className={clsx(
-                  linkStyles({ color: "foreground" }),
+                  linkStyles({
+                    color: pathname === item.href ? "primary" : "foreground",
+                  }),
                   "data-[active=true]:text-primary data-[active=true]:font-medium"
                 )}
-                color="foreground"
+                color={pathname === item.href ? "primary" : "foreground"}
                 href={item.href}
               >
                 {item.label}
@@ -64,7 +71,6 @@ export const Navbar = () => {
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
         </NavbarItem>
-        <NavbarItem className="hidden md:flex"></NavbarItem>
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
@@ -77,14 +83,8 @@ export const Navbar = () => {
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                    ? "danger"
-                    : "foreground"
-                }
-                href="#"
+                color={pathname === item.href ? "primary" : "foreground"}
+                href={item.href}
                 size="lg"
               >
                 {item.label}
