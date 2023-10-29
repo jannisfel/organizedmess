@@ -11,7 +11,13 @@ import { useState } from "react";
 
 const emailConfirmationRequired = false;
 
-export default function LoginForm({ session }: { session: Session | null }) {
+export default function LoginForm({
+  session,
+  doSignup,
+}: {
+  session: Session | null;
+  doSignup: ({ id, name }: { id: string; name: string }) => void;
+}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,17 +28,29 @@ export default function LoginForm({ session }: { session: Session | null }) {
   const supabase = createClientComponentClient();
 
   const handleSignUp = async () => {
-    await supabase.auth.signUp({
+    const res = await supabase.auth.signUp({
       email,
       password,
       options: {
         emailRedirectTo: `${location.origin}/auth/callback`,
       },
     });
+    if (res.error) {
+      alert(res.error.message);
+      return;
+    }
+    if (!res.data.user) {
+      alert("Something went wrong");
+      return;
+    }
+    doSignup({
+      id: res.data.user.id,
+      name,
+    });
     if (emailConfirmationRequired) {
       setView("check-email");
     } else {
-      router.push("/dashboard");
+      router.push("/");
       router.refresh();
     }
   };
@@ -42,7 +60,7 @@ export default function LoginForm({ session }: { session: Session | null }) {
       email,
       password,
     });
-    router.push("/dashboard");
+    router.push("/");
     router.refresh();
   };
 
