@@ -1,5 +1,6 @@
+import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { cookies } from "next/headers";
 import { z } from "zod";
 
 const insertItemSchema = z
@@ -13,16 +14,17 @@ const insertItemSchema = z
   .strict();
 
 export async function POST(request: Request) {
+  const supabase = createServerActionClient({ cookies });
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
- if (!user) {
-   return NextResponse.redirect("/login");
- }
+  if (!user) {
+    return NextResponse.redirect("/login");
+  }
 
   const body = await request.json();
-
 
   const { error } = await supabase.from("items").insert([
     {
