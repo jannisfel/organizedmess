@@ -42,7 +42,7 @@ export interface Database {
           expires_at: string | null
           id: string
           item_type: string | null
-          location: string
+          location: string | null
           name: string
           updated_at: string
         }
@@ -53,7 +53,7 @@ export interface Database {
           expires_at?: string | null
           id?: string
           item_type?: string | null
-          location: string
+          location?: string | null
           name: string
           updated_at?: string
         }
@@ -64,7 +64,7 @@ export interface Database {
           expires_at?: string | null
           id?: string
           item_type?: string | null
-          location?: string
+          location?: string | null
           name?: string
           updated_at?: string
         }

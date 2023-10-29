@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { ProtectRoute } from "@/lib/protectedRoute";
 import type { Database } from "@/lib/database.types";
+import LocationPreview from "@/components/LocationPreview";
 
 async function LocationsList() {
   const supabase = createServerActionClient<Database>({ cookies });
@@ -25,19 +26,12 @@ async function LocationsList() {
     <div className="grid grid-cols-1 gap-2 mt-4">
       <Link
         href="/locations/create"
-        className="bg-gray-200 text-gray-800 p-4 rounded-md border"
+        className="bg-gray-200 text-gray-800 p-4 rounded-xl border"
       >
         Create a new location
       </Link>
       {data?.map((location) => (
-        <Link
-          href={`/locations/${location.id}`}
-          key={location.id}
-          className="p-4 my-4 rounded-md border"
-        >
-          <h2 className="text-xl font-bold">{location.name}</h2>
-          <p>{location.description}</p>
-        </Link>
+        <LocationPreview location={location} key={location.id} />
       ))}
     </div>
   );

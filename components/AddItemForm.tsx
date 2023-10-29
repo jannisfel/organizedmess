@@ -92,7 +92,6 @@ export default function AddItemForm({
           {...register("location")}
           label="Location"
           size="lg"
-          isRequired
           items={locations}
         >
           {(location) => (
