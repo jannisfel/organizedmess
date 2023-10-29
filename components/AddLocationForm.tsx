@@ -2,15 +2,16 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { useRouter } from "next/navigation";
-import { FormState, formStateSchema } from "@/app/items/create/schema";
+import { FormState, formStateSchema } from "@/app/locations/create/schema";
 
-export default function AddItemForm({
-  createItem,
+export default function AddLocationForm({
+  createLocation,
 }: {
-  createItem: (data: FormState) => Promise<void>;
+  createLocation: (data: FormState) => Promise<void>;
 }) {
   const {
     register,
@@ -24,19 +25,19 @@ export default function AddItemForm({
 
   const onSubmit = async (data: FormState) => {
     try {
-      await createItem(data);
-      router.push("/items");
+      await createLocation(data);
+      router.push("/locations");
     } catch (error) {
-      alert("Error creating item");
+      alert("Error creating location");
       console.error(error);
     }
   };
 
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="flex flex-col items-center gap-2 min-w-[50%]">
+    <section className="flex flex-col locations-center justify-center gap-4 py-8 md:py-10">
+      <div className="flex flex-col locations-center gap-2 min-w-[50%]">
         <h3 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          Add an Item
+          Add an Location
         </h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Input
@@ -53,33 +54,14 @@ export default function AddItemForm({
             label="Description"
             size="lg"
           />
-          <Input
-            className="w-full"
-            {...register("expiration")}
-            label="Expiration"
-            size="lg"
-          />
-          <Input
-            className="w-full"
-            {...register("type")}
-            label="Type"
-            size="lg"
-          />
-          <Input
-            className="w-full"
-            {...register("location")}
-            label="Location"
-            size="lg"
-            isRequired
-          />
           <Button className="w-full" color="primary" type="submit">
-            Add Item
+            Add Location
           </Button>
         </form>
       </div>
       <div className="text-center">
-        <h3>Recently Added Items</h3>
-        {/* Display recently added items here */}
+        <h3>Recently Added Locations</h3>
+        {/* Display recently added locations here */}
       </div>
     </section>
   );
