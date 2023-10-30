@@ -3,7 +3,6 @@ import { Database } from "@/lib/database.types";
 import { useProtected } from "@/lib/protectedRoute";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import QRCode from "react-qr-code";
 
 async function ItemDetails({ id }: { id: string }) {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -13,7 +12,7 @@ async function ItemDetails({ id }: { id: string }) {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return;
+    return <></>;
   }
 
   const { data } = await supabase
@@ -31,8 +30,15 @@ async function ItemDetails({ id }: { id: string }) {
   );
 }
 
-export default function Item({ params: { id } }: { params: { id: string } }) {
-  useProtected();
+export default async function Item({
+  params: { id },
+}: {
+  params: { id: string };
+}) {
+  const notProtected = await useProtected();
+  if (notProtected) {
+    return notProtected;
+  }
 
   return (
     <section>

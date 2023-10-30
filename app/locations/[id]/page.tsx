@@ -11,7 +11,7 @@ async function LocationDetails({ id }: { id: string }) {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return;
+    return <></>;
   }
 
   const { data } = await supabase
@@ -29,12 +29,15 @@ async function LocationDetails({ id }: { id: string }) {
   );
 }
 
-export default function Location({
+export default async function Location({
   params: { id },
 }: {
   params: { id: string };
 }) {
-  useProtected();
+  const notProtected = await useProtected();
+  if (notProtected) {
+    return notProtected;
+  }
 
   return (
     <section>
