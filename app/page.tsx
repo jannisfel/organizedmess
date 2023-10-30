@@ -51,7 +51,10 @@ const QuickLink = ({
 };
 
 export default async function Home() {
-  useProtected();
+  const notProtected = await useProtected();
+  if (notProtected) {
+    return notProtected;
+  }
 
   const supabase = createServerComponentClient<Database>({ cookies });
 

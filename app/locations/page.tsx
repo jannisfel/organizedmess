@@ -37,8 +37,11 @@ async function LocationsList() {
   );
 }
 
-export default function Locations() {
-  useProtected();
+export default async function Locations() {
+  const notProtected = await useProtected();
+  if (notProtected) {
+    return notProtected;
+  }
 
   return (
     <section>

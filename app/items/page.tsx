@@ -37,8 +37,11 @@ async function ItemsList() {
   );
 }
 
-export default function Items() {
-  useProtected();
+export default async function Items() {
+  const notProtected = await useProtected();
+  if (notProtected) {
+    return notProtected;
+  }
 
   return (
     <section>

@@ -30,8 +30,15 @@ async function ItemDetails({ id }: { id: string }) {
   );
 }
 
-export default function Item({ params: { id } }: { params: { id: string } }) {
-  useProtected();
+export default async function Item({
+  params: { id },
+}: {
+  params: { id: string };
+}) {
+  const notProtected = await useProtected();
+  if (notProtected) {
+    return notProtected;
+  }
 
   return (
     <section>
