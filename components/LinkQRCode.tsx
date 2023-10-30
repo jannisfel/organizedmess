@@ -25,12 +25,12 @@ export default function LinkQRCode() {
   };
 
   return (
-    <div className="w-fit p-1 border rounded-sm border-black dark:border-white">
+    <div className="w-fit p-3 rounded-sm h-full">
       <QRCode
         value={href}
         onClick={handleClick}
         id={svgId}
-        className="cursor-pointer"
+        className="h-16 w-16 cursor-pointer"
       />
     </div>
   );

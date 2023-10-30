@@ -1,3 +1,4 @@
+import ItemView from "@/components/ItemView";
 import LinkQRCode from "@/components/LinkQRCode";
 import { Database } from "@/lib/database.types";
 import { useProtected } from "@/lib/protectedRoute";
@@ -22,12 +23,11 @@ async function ItemDetails({ id }: { id: string }) {
     .eq("id", id)
     .single();
 
-  return (
-    <div>
-      <h2 className="text-xl font-bold">{data?.name}</h2>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
-  );
+  
+
+  return <div>
+    {data && <ItemView item={data} />}
+  </div>;
 }
 
 export default async function Item({
@@ -44,7 +44,7 @@ export default async function Item({
     <section>
       <h1 className="text-2xl font-bold">Item</h1>
       <ItemDetails id={id} />
-      <LinkQRCode />
+      
     </section>
   );
 }
