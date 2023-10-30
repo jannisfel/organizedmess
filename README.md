@@ -1,7 +1,8 @@
 # Next.js & NextUI
 
 This is a template for creating applications using Next.js 13 (app directory) and NextUI (v2).
-[RUNNING INSTANCE](https://organizedmess.wireway.ch)
+
+[PUBLIC INSTANCE](https://organizedmess.wireway.ch)
 
 ## Technologies Used
 
