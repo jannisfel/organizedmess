@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ProtectRoute } from "@/lib/protectedRoute";
+import { useProtected } from "@/lib/protectedRoute";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/lib/database.types";
 import { cookies } from "next/headers";
@@ -51,6 +51,8 @@ const QuickLink = ({
 };
 
 export default async function Home() {
+  useProtected();
+
   const supabase = createServerComponentClient<Database>({ cookies });
 
   const {
@@ -78,32 +80,28 @@ export default async function Home() {
     .order("expires_at", { ascending: false });
 
   return (
-    <ProtectRoute>
-      <section>
-        <h1 className="text-2xl font-bold mb-4">
-          Welcome, {userProfile?.name}!
-        </h1>
-        <div className="inline-flex flex-wrap gap-4 w-full mb-4">
-          <QuickLink
-            title="Manage Items"
-            description="Click here to list, add, edit and delete items"
-            href="/items"
-          />
-          <QuickLink
-            title="Manage Locations"
-            description="Click here to list, add, edit and delete locations"
-            href="/locations"
-          />
+    <section>
+      <h1 className="text-2xl font-bold mb-4">Welcome, {userProfile?.name}!</h1>
+      <div className="inline-flex flex-wrap gap-4 w-full mb-4">
+        <QuickLink
+          title="Manage Items"
+          description="Click here to list, add, edit and delete items"
+          href="/items"
+        />
+        <QuickLink
+          title="Manage Locations"
+          description="Click here to list, add, edit and delete locations"
+          href="/locations"
+        />
+      </div>
+      <div>
+        <h1 className="text-2xl font-bold mb-4">Expiring Soon</h1>
+        <div className="grid grid-cols-1 gap-2">
+          {data?.map((item) => (
+            <ItemPreview item={item} key={item.id} />
+          ))}
         </div>
-        <div>
-          <h1 className="text-2xl font-bold mb-4">Expiring Soon</h1>
-          <div className="grid grid-cols-1 gap-2">
-            {data?.map((item) => (
-              <ItemPreview item={item} key={item.id} />
-            ))}
-          </div>
-        </div>
-      </section>
-    </ProtectRoute>
+      </div>
+    </section>
   );
 }

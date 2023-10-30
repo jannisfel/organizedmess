@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
-import { ProtectRoute } from "@/lib/protectedRoute";
+import { useProtected } from "@/lib/protectedRoute";
 import type { Database } from "@/lib/database.types";
 import LocationPreview from "@/components/LocationPreview";
 
@@ -38,12 +38,12 @@ async function LocationsList() {
 }
 
 export default function Locations() {
+  useProtected();
+
   return (
-    <ProtectRoute>
-      <section>
-        <h1 className="text-2xl font-bold">Locations</h1>
-        <LocationsList />
-      </section>
-    </ProtectRoute>
+    <section>
+      <h1 className="text-2xl font-bold">Locations</h1>
+      <LocationsList />
+    </section>
   );
 }

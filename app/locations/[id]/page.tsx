@@ -1,5 +1,5 @@
 import { Database } from "@/lib/database.types";
-import { ProtectRoute } from "@/lib/protectedRoute";
+import { useProtected } from "@/lib/protectedRoute";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
@@ -34,12 +34,12 @@ export default function Location({
 }: {
   params: { id: string };
 }) {
+  useProtected();
+
   return (
-    <ProtectRoute>
-      <section>
-        <h1 className="text-2xl font-bold">Location</h1>
-        <LocationDetails id={id} />
-      </section>
-    </ProtectRoute>
+    <section>
+      <h1 className="text-2xl font-bold">Location</h1>
+      <LocationDetails id={id} />
+    </section>
   );
 }
