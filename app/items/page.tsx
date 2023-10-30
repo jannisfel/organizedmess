@@ -13,7 +13,7 @@ async function ItemsList() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return;
+    return <></>;
   }
 
   const { data } = await supabase

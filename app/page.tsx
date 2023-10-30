@@ -60,7 +60,7 @@ export default async function Home() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return;
+    return <></>;
   }
 
   const { data: userProfile } = await supabase

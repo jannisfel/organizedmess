@@ -24,11 +24,17 @@ export default async function ItemPreview({
 }) {
   const supabase = createServerComponentClient<Database>({ cookies });
 
-  const { data: locationData } = await supabase
-    .from("locations")
-    .select("*")
-    .eq("id", item.location)
-    .single();
+  let locationData: Database["public"]["Tables"]["locations"]["Row"] | null =
+    null;
+  if (item.location) {
+    locationData = (
+      await supabase
+        .from("locations")
+        .select("*")
+        .eq("id", item.location)
+        .single()
+    ).data;
+  }
 
   return (
     <Link href={`/items/${item.id}`}>
