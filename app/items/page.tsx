@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { ProtectRoute } from "@/lib/protectedRoute";
 import type { Database } from "@/lib/database.types";
+import ItemPreview from "@/components/ItemPreview";
 
 async function ItemsList() {
   const supabase = createServerActionClient<Database>({ cookies });
@@ -25,19 +26,12 @@ async function ItemsList() {
     <div className="grid grid-cols-1 gap-2 mt-4">
       <Link
         href="/items/create"
-        className="bg-gray-200 text-gray-800 p-4 rounded-md border"
+        className="bg-gray-200 text-gray-800 p-4 rounded-xl border"
       >
         Create a new item
       </Link>
       {data?.map((item) => (
-        <Link
-          href={`/items/${item.id}`}
-          key={item.id}
-          className="p-4 my-4 rounded-md border"
-        >
-          <h2 className="text-xl font-bold">{item.name}</h2>
-          <p>{item.description}</p>
-        </Link>
+        <ItemPreview item={item} key={item.id} />
       ))}
     </div>
   );
