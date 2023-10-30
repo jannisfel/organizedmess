@@ -4,11 +4,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import type { Database } from "./database.types";
 
-export async function ProtectRoute({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export async function useProtected() {
   const supabase = createServerComponentClient<Database>({ cookies });
 
   const {
@@ -19,6 +15,4 @@ export async function ProtectRoute({
     console.log(session);
     redirect("/login");
   }
-
-  return <>{children}</>;
 }
