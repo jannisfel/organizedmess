@@ -80,7 +80,7 @@ export default async function Home() {
       "expires_at",
       new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString()
     )
-    .order("expires_at", { ascending: false });
+    .order("expires_at", { ascending: true });
 
   return (
     <section>
