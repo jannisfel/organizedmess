@@ -39,7 +39,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "supabase": "^1.88.0",
+    "supabase": "^1.190.0",
     "typescript": "^5.2.2"
   }
 }
